@@ -1,0 +1,171 @@
+import random  # Imports the random module to generate random numbers and select random items
+import datetime  # Imports the datetime module to work with dates and times
+
+# Function to get the current time in the format HH:MM:SS
+def get_time():
+    now = datetime.datetime.now()  # Fetches the current date and time
+    return now.strftime("%H:%M:%S")  # Returns the time formatted as "hour:minute:second"
+
+# Function to get the current date in the format Month day, Year
+def get_date():
+    today = datetime.date.today()  # Gets the current date
+    return today.strftime("%B %d, %Y")  # Returns the date formatted as "Month day, Year" (e.g., "January 15, 2025")
+
+# Function to return a random color from a predefined list
+def random_color():
+    colors = ["Red", "Blue", "Green", "Yellow", "Pink", "Purple", "Orange", "White", "Black", "Brown"]  # List of color names
+    return random.choice(colors)  # Randomly selects and returns a color from the list
+
+# Function to add two numbers
+def add_numbers(num1, num2):
+    return num1 + num2  # Returns the sum of num1 and num2
+
+# Function to subtract num2 from num1
+def subtract_numbers(num1, num2):
+    return num1 - num2  # Returns the difference between num1 and num2
+
+# Function to multiply num1 and num2
+def multiply_numbers(num1, num2):
+    return num1 * num2  # Returns the product of num1 and num2
+
+# Function to divide num1 by num2 (with a check for division by zero)
+def divide_numbers(num1, num2):
+    if num2 == 0:  # If num2 is zero
+        return "Cannot divide by zero!"  # Returns an error message
+    return num1 / num2  # Otherwise, returns the result of the division
+
+# Main chatbot function
+def chatbot():
+    print("Hello! I'm your chatbot. How can I assist you today?")  # Greets the user and asks how it can help
+    
+    while True:  # Infinite loop to keep the conversation going
+        user_input = input("\nYou: ").lower()  # Takes user input, converts it to lowercase for easier comparison
+
+        # Responds to greetings
+        if "hello" in user_input or "hi" in user_input:
+            print("Chatbot: Hello! How are you?")
+
+        # Responds to requests for the time
+        elif "time" in user_input:
+            print(f"Chatbot: The current time is {get_time()}.")  # Calls get_time() to display the current time
+
+        # Responds to requests for the date
+        elif "date" in user_input:
+            print(f"Chatbot: Today's date is {get_date()}.")  # Calls get_date() to display the current date
+
+        # Responds with a random color
+        elif "color" in user_input:
+            print(f"Chatbot: Here's a random color: {random_color()}.")  # Calls random_color() to display a random color
+
+        # Responds to requests for addition
+        elif "add" in user_input:
+            try:
+                nums = input("Enter two numbers separated by space: ").split()  # Prompts user for two numbers separated by space
+                num1, num2 = int(nums[0]), int(nums[1])  # Converts the input strings to integers
+                print(f"Chatbot: The sum is {add_numbers(num1, num2)}.")  # Calls add_numbers() to calculate the sum and displays it
+            except:  # If there's an error in input conversion
+                print("Chatbot: Please enter valid numbers.")  # Asks the user to input valid numbers
+
+        # Responds to requests for subtraction
+        elif "subtract" in user_input:
+            try:
+                nums = input("Enter two numbers separated by space: ").split()  # Prompts user for two numbers
+                num1, num2 = int(nums[0]), int(nums[1])  # Converts input to integers
+                print(f"Chatbot: The result is {subtract_numbers(num1, num2)}.")  # Calls subtract_numbers() to subtract the numbers
+            except:
+                print("Chatbot: Please enter valid numbers.")  # Handles invalid input
+
+        # Responds to requests for multiplication
+        elif "multiply" in user_input:
+            try:
+                nums = input("Enter two numbers separated by space: ").split()  # Prompts user for two numbers
+                num1, num2 = int(nums[0]), int(nums[1])  # Converts the input to integers
+                print(f"Chatbot: The result is {multiply_numbers(num1, num2)}.")  # Calls multiply_numbers() and displays result
+            except:
+                print("Chatbot: Please enter valid numbers.")  # Error handling
+
+        # Responds to requests for division
+        elif "divide" in user_input:
+            try:
+                nums = input("Enter two numbers separated by space: ").split()  # Prompts user for two numbers
+                num1, num2 = int(nums[0]), int(nums[1])  # Converts to integers
+                print(f"Chatbot: The result is {divide_numbers(num1, num2)}.")  # Calls divide_numbers() and displays result
+            except:
+                print("Chatbot: Please enter valid numbers.")  # Error handling
+
+        # Responds to queries about the chatbot's name
+        elif "your name" in user_input:
+            print("Chatbot: I am your friendly chatbot!")
+
+        # Responds to questions about the chatbot's age
+        elif "age" in user_input:
+            print("Chatbot: I am timeless! Age is just a number.")
+
+        # Responds to weather-related queries
+        elif "weather" in user_input:
+            print("Chatbot: I can't predict the weather yet, but it's always sunny in my world!")
+
+        # Responds with the current day of the week
+        elif "day" in user_input:
+            print(f"Chatbot: Today is {datetime.datetime.now().strftime('%A')}.")  # Uses the datetime module to fetch the current weekday
+
+        # Exits the chatbot
+        elif "bye" in user_input or "exit" in user_input:
+            print("Chatbot: Goodbye! Have a great day!")  # Says goodbye and exits the loop
+            break  # Ends the loop and stops the chatbot
+
+        # Joke functionality
+        elif "joke" in user_input:
+            jokes = [  # A list of jokes
+                "Why don’t scientists trust atoms? Because they make up everything!",
+                "Why did the chicken join a band? Because it had the drumsticks!",
+                "What do you call fake spaghetti? An impasta!"
+            ]
+            print(f"Chatbot: {random.choice(jokes)}")  # Selects and displays a random joke
+
+        # Quote functionality
+        elif "quote" in user_input:
+            quotes = [  # A list of motivational quotes
+                "The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt",
+                "In the middle of every difficulty lies opportunity. - Albert Einstein",
+                "Life is 10% what happens to us and 90% how we react to it. - Charles R. Swindoll"
+            ]
+            print(f"Chatbot: {random.choice(quotes)}")  # Selects and displays a random quote
+
+        # Movie suggestion functionality
+        elif "movie" in user_input:
+            print("Chatbot: I recommend watching 'Inception' or 'The Matrix' if you're into mind-bending films.")
+
+        # Suggests a random game
+        elif "game" in user_input:
+            games = ["Chess", "Sudoku", "Scrabble", "Poker", "Checkers"]  # A list of games
+            print(f"Chatbot: How about playing {random.choice(games)} today?")  # Selects and displays a random game
+
+        # Random number functionality
+        elif "number" in user_input:
+            print(f"Chatbot: Here's a random number for you: {random.randint(1, 100)}")  # Generates and displays a random number between 1 and 100
+
+        # Motivation functionality
+        elif "motivate" in user_input:
+            motivations = [  # A list of motivational quotes
+                "Believe in yourself! You can achieve anything.",
+                "The only way to do great work is to love what you do.",
+                "Keep pushing forward. You're doing great!"
+            ]
+            print(f"Chatbot: {random.choice(motivations)}")  # Selects and displays a random motivational message
+
+        # Coin flip functionality
+        elif "coin" in user_input:
+            print(f"Chatbot: Flipping a coin... It's {random.choice(['Heads', 'Tails'])}!")  # Randomly chooses between "Heads" and "Tails"
+
+        # Dice roll functionality
+        elif "roll" in user_input:
+            print(f"Chatbot: Rolling a dice... You got {random.randint(1, 6)}!")  # Rolls a dice (random number between 1 and 6)
+
+        # Responds to unknown commands
+        else:
+            print("Chatbot: I'm sorry, I don't understand that. Could you try asking something else?")  # Default response for unrecognized input
+
+# Starts the chatbot function if the script is being run directly
+if __name__ == "__main__":
+    chatbot()  # Calls the chatbot function to begin the interaction
